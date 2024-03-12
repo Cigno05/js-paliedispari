@@ -49,38 +49,66 @@ console.log('JS funziona');
 // }
 
 // PARI O DISPARI-------------------------------------
-let userChoice; // ???????????
 
+let userChoice = prompt('pari o dispari?')
 
-let userNumber = parseInt(prompt('inserisci un numero da 1 a 5'));
-//validation
-if (userNumber >= 1 || userNumber <= 5) {
+// validation string
+if (userChoice === 'pari' || userChoice === 'dispari') {
 
     
-    // let userNumber = 5;
-    let computerNumber = Math.floor(Math.random() * 5) + 1;
-    console.log('user ', userNumber);
-    console.log('pc ', computerNumber);
+    let userNumber = parseInt(prompt('inserisci un numero da 1 a 5'));
+    console.log(userNumber)
     
-    let sumNumber = userNumber + computerNumber;
-    console.log('somma ', sumNumber);
+    // validation number
+    if (userNumber >= 1 && userNumber <= 5) {
+        
+        let computerNumber = Math.floor(Math.random() * 5) + 1;
+        console.log(computerNumber)
+        
+        function sum(number1, number2) {
+            const result = number1 + number2;
+            return result
+        }
+        
+        let resultGame;
+        
+        const sumGame = sum(userNumber, computerNumber);
+        console.log(sumGame);  
+        
+        let rest = sumGame % 2;
+        
+        if (rest === 0) {
+            resultGame = 'pari';
+        } else {
+            resultGame = 'dispari';
+        }
+        
+        console.log(resultGame)
+        
+        let messageResult = document.getElementById('container')
     
-    let rest = sumNumber % 2;
-    console.log('resto ', rest);
-    
-    if (rest === 0) {
-        console.log('il numero è pari')
+        if (resultGame === userChoice) {
+            messageResult.innerHTML = `
+            <div>
+            <h2>Hai Vinto!!!</h2>
+            </div>
+            `
+        } else {
+            messageResult.innerHTML = `
+        <div>
+            <h2>Hai Perso!!!</h2>
+        </div>
+        `
+        }
+        
     } else {
-        console.log('il numero è dispari')
+        window.alert('Numero non valido')
+        window.location.reload();
     }
-    
 } else {
-    // reload page???????
+    window.alert('Valore non valido')
+    location.reload();
 }
-
-
-
-
 
 
 
